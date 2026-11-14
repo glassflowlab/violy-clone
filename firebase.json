@@ -1,0 +1,9 @@
+{
+  "hosting": {
+    "violy-practice": {
+      "site": "violy-practice",
+      "public": "out",
+      "ignore": ["**/.DS_Store", "firebase.json", ".firebaserc"]
+    }
+  }
+}

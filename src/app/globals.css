@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — copied from violy.app */
+  --color-violy-50: #f6fbff;
+  --color-violy-100: #edf6ff;
+  --color-violy-200: #dbeaff;
+  --color-violy-300: #b9d8fb;
+  --color-violy-400: #7eb1f8;
+  --color-violy-500: #2f7ff5;        /* primary */
+  --color-violy-600: #1f66c8;
+  --color-violy-700: #184b94;
+  --color-violy-ink: #173456;        /* ink */
+  --color-violy-ink-2: #516b85;      /* body */
+  --color-violy-yellow: #ffd96a;     /* CTA */
+  --color-violy-yellow-2: #ffe490;
+  --color-violy-peach: #ff806c;
+  --color-violy-mint: #6ceb83;
+
+  --font-sans: "Avenir Next", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: var(--color-violy-50);
+  color: var(--color-violy-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scroll for nav anchors */
+html { scroll-behavior: smooth; }
+
+/* Custom focus ring */
+*:focus-visible {
+  outline: 3px solid var(--color-violy-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* OSMD container tweaks */
+.osmd-container {
+  background: white;
+  border-radius: 1.25rem;
+  box-shadow: 0 1rem 3rem rgba(23, 52, 86, 0.08);
+  padding: 1.5rem;
+}
+
+/* Live cursor on sheet — drawn by JS, but provide fallback highlight */
+.osmd-cursor-note rect,
+.osmd-cursor-note path {
+  filter: drop-shadow(0 0 8px var(--color-violy-500));
+}
+
+/* Pulsing pitch meter */
+@keyframes pitchPulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.85; }
+  50% { transform: scaleY(1.15); opacity: 1; }
+}
+.pitch-bar { animation: pitchPulse 220ms ease-in-out infinite; transform-origin: center; }
+
+/* Score number ticker */
+@keyframes scorePop {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.score-pop { animation: scorePop 380ms cubic-bezier(.2,.7,.2,1.2) both; }
+
+/* Reveal on scroll, mirrors violy.app */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* Hide native scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
